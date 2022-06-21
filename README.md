@@ -1,29 +1,47 @@
 # Database Project
+**we established our database on sql file(created tables, integrity constraint, forigne keies, ...) named "data-insertion.sql" and inserted 
+    the data we needed into it.
+    now we want to perform some queries using select, delete, update, aggregation functions, nested, exist, comparison and membership, types of join, view and 
+    grant statementds.**
 
-## Quries
+## Queries
+consider this relation instance on qualification:
 
+![img](./images/r1.png)
 
+as you can see, the gpa scale is too large and covers the range of 1 billion to 1000 billion, thus if we divide it to 50 billion,
+it's range will be from 1 to 20, wich is more formal.
 
-![img](./images/3.png)
+``` sql
+        UPDATE qualification
+        SET gpa = gpa / 50000000000
+```
 
-1. Info on employees whose gradeSalary is above gradeSalary average
+![img](./images/r2.png)
+
+now assume that we want delete employee number 4 from this table, therfore:
+
+``` sql
+        DELETE FROM qualification
+        WHERE employeeNo = 4
+```
+
+![img](./images/r3.png)
+
+1. Info on employees whose salary is above salary average
 
     ``` sql
-        SELECT employeeNo, firstName, lastName 
+        SELECT employeeNo, firstName, lastName
         FROM employee 
-        WHERE employeeNo IN ( 
-            SELECT employeeNo 
-            FROM workhistory, grade 
-            WHERE workhistory.prevGrade = grade.gradeNo AND grade.gradeSalary > ( 
-                SELECT AVG(gradeSalary) 
-                FROM grade 
-                ) 
-            );
+        WHERE salary > ( 
+            SELECT avg(salary)
+            FROM employee
+        );
     ```
 
     ![img](./images/4.png)
 
-2. List of Usernames and previous companies in which employees of department number 6 have worked
+2. List of employees number and previous companies in which employees of department number 6 have worked in
 
     ``` sql
         SELECT employeeNo, pCompanyName
@@ -48,7 +66,7 @@
 
     ![img](./images/6.png)
 
-4. Info on employees who have worked both in Rapzapin Direct Comapny and Klibanollover WorldWide Company
+4. Info on employees who have worked both in "Rapzapin Direct Comapny" and "Klibanollover WorldWide Company" companies
 
     ``` sql
         with emp_work_prev(employeeNo, firstName, lastName, pCompanyName) AS (
@@ -77,7 +95,7 @@
     ![img](./images/8.png)
 
 
-6. Consider you need to permit a secretary named Abel in the department, access on reading user information. But you only want to give her permission in her own division
+6. Consider you need to permit a secretary in the department 'Abel', access on reading user information. But you only want to give her permission in her own division
 
     ``` sql
 
@@ -89,6 +107,13 @@
     ```
 
     ![img](./images/9.png)
+
+   Now if this secretary has a username called 'emmy', we wanna establish:
+	
+    ``` sql
+
+        GRANT SELECT on Abel_employees to (emmy);
+    ```
 
 7. What post each employee has, is a useful query; so we create a view of each employee's info and working post
 
