@@ -7,6 +7,8 @@ so our relational schema is gonna be like:</br>**
 
 **and also ER model will be like:</br>**  
 
+![img](./images/ER.png)
+
 **now we want to perform some queries using select, delete, update, aggregation functions, nested, exist, comparison and membership, types of join, view and 
 grant statementds.**
 
