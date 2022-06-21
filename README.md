@@ -17,6 +17,8 @@
         );
 ```
 
+![img](./images/1.png)
+
 ``` sql
     SELECT employeeNo , firstName, lastName 
     FROM employee 
@@ -26,6 +28,8 @@
         WHERE sex = 1
     );
 ```
+
+![img](./images/2.png)
 
 ``` sql
     SELECT employeeNo , firstName, lastName 
@@ -37,6 +41,8 @@
     );
 ```
 
+![img](./images/3.png)
+
 ``` sql
     SELECT employeeNo, firstName, lastName 
     FROM employee 
@@ -50,11 +56,15 @@
         );
 ```
 
+![img](./images/4.png)
+
 ``` sql
     SELECT employeeNo, pCompanyName
     FROM ( employee INNER JOIN workhistory USING(employeeNo) ) INNER JOIN prevcompany USING(prevCompanyNo)
     WHERE departmentNo = 6;
 ```
+
+![img](./images/5.png)
 
 ``` sql
     SELECT employeeNo , firstName, lastName 
@@ -66,18 +76,7 @@
     );
 ```
 
-``` sql
-    SELECT employeeNo, firstName, lastName 
-    FROM employee 
-    WHERE employeeNo IN ( 
-        SELECT employeeNo 
-        FROM workhistory, grade 
-        WHERE workhistory.prevGrade = grade.gradeNo AND grade.gradeSalary > ( 
-            SELECT AVG(gradeSalary) 
-            FROM grade 
-            ) 
-        );
-```
+![img](./images/6.png)
 
 ``` sql
     with emp_work_prev(employeeNo, firstName, lastName, pCompanyName) AS (
@@ -94,10 +93,14 @@
 
 ```
 
+![img](./images/7.png)
+
 ``` sql
     SELECT gradeNo, postNo
     FROM grade LEFT OUTER JOIN gradepost USING(gradeNo);
 ```
+
+![img](./images/8.png)
 
 ``` sql
 
