@@ -157,10 +157,6 @@ CREATE INDEX fk_workhistory_employee ON workhistory ( employeeNo );
 
 CREATE INDEX fk_workhistory_grade ON workhistory ( prevGrade );
 
-CREATE VIEW human_resource.abel_employees AS select `e`.`employeeNo` AS `employeeNo`,`e`.`Title` AS `Title`,`e`.`firstName` AS `firstName`,`e`.`lastName` AS `lastName`,`e`.`address` AS `address`,`e`.`workTelExt` AS `workTelExt`,`e`.`homeTellNo` AS `homeTellNo`,`e`.`emplyeeEmailAddress` AS `emplyeeEmailAddress`,`e`.`socialSecurityNumber` AS `socialSecurityNumber`,`e`.`DOB` AS `DOB`,`e`.`sex` AS `sex`,`e`.`salary` AS `salary`,`e`.`departmentNo` AS `departmentNo`,`e`.`dateStarted` AS `dateStarted`,`e`.`dateLeft` AS `dateLeft`,`e`.`supervisorEmployeeNo` AS `supervisorEmployeeNo` from (`human_resource`.`employee` `e` join `human_resource`.`department` on((`e`.`departmentNo` = `human_resource`.`department`.`departmentNo`))) where (`human_resource`.`department`.`departmentName` = 'Abel');
-
-CREATE VIEW human_resource.employee_post AS select `human_resource`.`employee`.`employeeNo` AS `employeeNo`,`human_resource`.`employee`.`firstName` AS `firstName`,`human_resource`.`employee`.`lastName` AS `lastName`,`human_resource`.`position`.`postNo` AS `postNo`,`human_resource`.`post`.`postDescription` AS `postDescription` from ((`human_resource`.`employee` join `human_resource`.`position` on((`human_resource`.`employee`.`employeeNo` = `human_resource`.`position`.`employeeNo`))) join `human_resource`.`post` on((`human_resource`.`position`.`postNo` = `human_resource`.`post`.`postNo`)));
-
 ALTER TABLE department ADD CONSTRAINT Department_ibfk_1 FOREIGN KEY ( mangeEmployeeNo ) REFERENCES employee( employeeNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE employee ADD CONSTRAINT Employee_ibfk_2 FOREIGN KEY ( departmentNo ) REFERENCES department( departmentNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
