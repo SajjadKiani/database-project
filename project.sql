@@ -1,5 +1,19 @@
 -- CREATE SCHEMA human_resource;
 
+CREATE TABLE grade ( 
+	gradeNo              int  NOT NULL    ,
+	validFromDate        date  NOT NULL    ,
+	validToDate          date  NOT NULL    ,
+	gradeDescription     text  NOT NULL    ,
+	gradeSalary          int  NOT NULL    ,
+	noDayLeave           int  NOT NULL    ,
+	positionTypeNo       int  NOT NULL    ,
+	CONSTRAINT pk_grade PRIMARY KEY ( gradeNo, validFromDate, validToDate ),
+	CONSTRAINT unq_grade_gradeno UNIQUE ( gradeNo ) 
+ );
+
+CREATE INDEX fk_grade_positiontype ON grade ( positionTypeNo );
+
 CREATE TABLE institution ( 
 	institutionNo        int  NOT NULL    PRIMARY KEY,
 	institutionName      text  NOT NULL    ,
@@ -32,21 +46,6 @@ CREATE TABLE prevcompany (
 	contactFaxNo         text      ,
 	contactEmailAddress  text      
  );
-
-CREATE TABLE grade ( 
-	gradeNo              int  NOT NULL    ,
-	validFromDate        date  NOT NULL    ,
-	validToDate          date  NOT NULL    ,
-	gradeDescription     text  NOT NULL    ,
-	gradeSalary          int  NOT NULL    ,
-	noDayLeave           int  NOT NULL    ,
-	positionTypeNo       int  NOT NULL    ,
-	CONSTRAINT pk_grade PRIMARY KEY ( gradeNo, validFromDate, validToDate ),
-	CONSTRAINT unq_grade_gradeno UNIQUE ( gradeNo ) ,
-	CONSTRAINT fk_grade_positiontype FOREIGN KEY ( positionTypeNo ) REFERENCES positiontype( positionTypeNo ) ON DELETE RESTRICT ON UPDATE RESTRICT
- );
-
-CREATE INDEX fk_grade_positiontype ON grade ( positionTypeNo );
 
 CREATE TABLE department ( 
 	departmentNo         int  NOT NULL    PRIMARY KEY,
@@ -95,12 +94,15 @@ CREATE TABLE position (
 	postNo               int  NOT NULL    ,
 	startDate            date  NOT NULL    ,
 	endDate              date  NOT NULL    ,
+	positionTypeNo       int      ,
 	CONSTRAINT pk_position PRIMARY KEY ( employeeNo, postNo, startDate )
  );
 
 CREATE INDEX employeeNo ON position ( employeeNo, postNo );
 
 CREATE INDEX postNo ON position ( postNo );
+
+CREATE INDEX fk_position_positiontype ON position ( positionTypeNo );
 
 CREATE TABLE post ( 
 	postNo               int  NOT NULL    ,
@@ -155,8 +157,6 @@ CREATE TABLE workhistory (
 
 CREATE INDEX fk_workhistory_employee ON workhistory ( employeeNo );
 
-CREATE INDEX fk_workhistory_grade ON workhistory ( prevGrade );
-
 ALTER TABLE department ADD CONSTRAINT Department_ibfk_1 FOREIGN KEY ( mangeEmployeeNo ) REFERENCES employee( employeeNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE employee ADD CONSTRAINT Employee_ibfk_2 FOREIGN KEY ( departmentNo ) REFERENCES department( departmentNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
@@ -171,6 +171,8 @@ ALTER TABLE position ADD CONSTRAINT Position_ibfk_1 FOREIGN KEY ( employeeNo ) R
 
 ALTER TABLE position ADD CONSTRAINT Position_ibfk_2 FOREIGN KEY ( postNo ) REFERENCES post( postNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
+ALTER TABLE position ADD CONSTRAINT fk_position_positiontype FOREIGN KEY ( positionTypeNo ) REFERENCES positiontype( positionTypeNo ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 ALTER TABLE post ADD CONSTRAINT Post_ibfk_1 FOREIGN KEY ( departmentNo ) REFERENCES department( departmentNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE qualification ADD CONSTRAINT Qualification_ibfk_1 FOREIGN KEY ( employeeNo ) REFERENCES employee( employeeNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
@@ -182,7 +184,5 @@ ALTER TABLE review ADD CONSTRAINT Review_ibfk_1 FOREIGN KEY ( reviewedEmployeeNo
 ALTER TABLE review ADD CONSTRAINT Review_ibfk_2 FOREIGN KEY ( reviewerEmployeeNo ) REFERENCES employee( employeeNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE workhistory ADD CONSTRAINT fk_workhistory_employee FOREIGN KEY ( employeeNo ) REFERENCES employee( employeeNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE workhistory ADD CONSTRAINT fk_workhistory_grade FOREIGN KEY ( prevGrade ) REFERENCES grade( gradeNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE workhistory ADD CONSTRAINT fk_workhistory_prevcompany FOREIGN KEY ( prevCompanyNo ) REFERENCES prevcompany( prevCompanyNo ) ON DELETE RESTRICT ON UPDATE RESTRICT;

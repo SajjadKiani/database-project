@@ -1,8 +1,14 @@
 # Database Project
-**we established our database on sql file(created tables, integrity constraint, forigne keies, ...) named "data-insertion.sql" and inserted 
-    the data we needed into it.
-    now we want to perform some queries using select, delete, update, aggregation functions, nested, exist, comparison and membership, types of join, view and 
-    grant statementds.**
+**we established our database on sql file(created tables, integrity constraint, forigne keies, ...) named "project.sql" and inserted 
+the data we needed into "data-insertion".</br>
+so our relational schema is gonna be like:</br>**
+
+![img](./images/relational.png)
+
+**and also ER model will be like:</br>**  
+
+**now we want to perform some queries using select, delete, update, aggregation functions, nested, exist, comparison and membership, types of join, view and 
+grant statementds.**
 
 ## Queries
 consider this relation instance on qualification:
