@@ -327,14 +327,14 @@ now assume that we want delete employee number 4 from this table, therfore:
 
     ![img](./images/9.png)
 
-   Now if this secretary has a username called 'emmy', we wanna establish:
-	
+7. Now if this secretary has a username called 'emmy', we wanna establish:
+
     ``` sql
 
         GRANT SELECT on Abel_employees to (emmy);
     ```
 
-7. What post each employee has, is a useful query; so we create a view of each employee's info and working post
+8. What post each employee has, is a useful query; so we create a view of each employee's info and working post
 
     ``` sql
         CREATE VIEW employee_post AS (
@@ -345,7 +345,7 @@ now assume that we want delete employee number 4 from this table, therfore:
 
     ![img](./images/10.png)
 
-8. Suppose a secretary with the username Monika is in charge of submitting interview records, so she must be granted access on creating records regarding reviews
+9. Suppose a secretary with the username Monika is in charge of submitting interview records, so she must be granted access on creating records regarding reviews
 
     ``` sql
         GRANT INSERT ON review TO (monika);
