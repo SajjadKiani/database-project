@@ -4,43 +4,6 @@
 
 
 
-``` sql
-    SELECT pCompanyName
-    FROM prevcompany
-    WHERE prevcompanyno IN (
-        SELECT prevcompanyno 
-        FROM workhistory
-        WHERE employeeno IN (
-            SELECT employeeno 
-            FROM employee
-            WHERE departmentno = 6)
-        );
-```
-
-![img](./images/1.png)
-
-``` sql
-    SELECT employeeNo , firstName, lastName 
-    FROM employee 
-    WHERE salary > SOME ( 
-        SELECT salary 
-        FROM employee 
-        WHERE sex = 1
-    );
-```
-
-![img](./images/2.png)
-
-``` sql
-    SELECT employeeNo , firstName, lastName 
-    FROM employee 
-    WHERE salary > ALL ( 
-        SELECT salary 
-        FROM employee 
-        WHERE sex = 1
-    );
-```
-
 ![img](./images/3.png)
 
 1. Info on employees whose gradeSalary is above gradeSalary average
