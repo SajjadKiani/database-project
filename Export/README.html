@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="database-project">Database Project</h1>
+<p><strong>we established our database on sql file(created tables, integrity constraint, forigne keies, ...) named &quot;project.sql&quot; and inserted
+the data we needed into &quot;data-insertion&quot;.</br>
+so our relational schema is gonna be like:</br></strong></p>
+<p><img src="./images/relational.png" alt="img"></p>
+<p><strong>and also ER model will be like:</br></strong></p>
+<p><img src="./images/ER.png" alt="img"></p>
+<p><strong>now we want to perform some queries using select, delete, update, aggregation functions, nested, exist, comparison and membership, types of join, view and
+grant statementds.</strong></p>
+<h2 id="initial-tables">Initial Tables</h2>
+<h3 id="grade">Grade</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> grade ( 
+	gradeNo              <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	validFromDate        <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	validToDate          <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	gradeDescription     <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	gradeSalary          <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	noDayLeave           <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	positionTypeNo       <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	<span class="hljs-keyword">CONSTRAINT</span> pk_grade PRIMARY <span class="hljs-keyword">KEY</span> ( gradeNo, validFromDate, validToDate ),
+	<span class="hljs-keyword">CONSTRAINT</span> unq_grade_gradeno <span class="hljs-keyword">UNIQUE</span> ( gradeNo ) 
+ );
+
+ <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> fk_grade_positiontype <span class="hljs-keyword">ON</span> grade ( positionTypeNo );
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> gradepost <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( gradeNo ) <span class="hljs-keyword">REFERENCES</span> grade( gradeNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+</div></code></pre>
+<h3 id="institution">Institution</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> institution ( 
+    institutionNo        <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    PRIMARY <span class="hljs-keyword">KEY</span>,
+    institutionName      <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+    instTellNo           <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+    instFaxNo            <span class="hljs-built_in">text</span>      ,
+    instWebAddress       <span class="hljs-built_in">text</span>      ,
+    contactName          <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+    contactTellNo        <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+    contactFaxNo         <span class="hljs-built_in">text</span>      ,
+    contactEmailAddress  <span class="hljs-built_in">text</span>      
+);
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> qualification <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( institutionNo ) <span class="hljs-keyword">REFERENCES</span> institution( institutionNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+</div></code></pre>
+<h3 id="positiontype">PositionType</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> positiontype ( 
+	positionTypeNo       <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    PRIMARY <span class="hljs-keyword">KEY</span>,
+	positionTypeDescription <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    
+ );
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">position</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( positionTypeNo ) <span class="hljs-keyword">REFERENCES</span> positiontype( positionTypeNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">NO</span> <span class="hljs-keyword">ACTION</span> <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">NO</span> <span class="hljs-keyword">ACTION</span>;
+</div></code></pre>
+<h3 id="prevcomapny">PrevComapny</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> prevcompany ( 
+	prevCompanyNo        <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    PRIMARY <span class="hljs-keyword">KEY</span>,
+	pCompanyName         <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	pCompanyStreet       <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	pCompanyCity         <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	pCompanyState        <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	pCompanyZipCode      <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	pCompanyTellNo       <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	pCompanyFaxNo        <span class="hljs-built_in">text</span>      ,
+	pCompanyWebAddress   <span class="hljs-built_in">text</span>      ,
+	contactName          <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	contactTellNo        <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	contactFaxNo         <span class="hljs-built_in">text</span>      ,
+	contactEmailAddress  <span class="hljs-built_in">text</span>      
+ );
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> workhistory <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( prevCompanyNo ) <span class="hljs-keyword">REFERENCES</span> prevcompany( prevCompanyNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+</div></code></pre>
+<h3 id="department">Department</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> department ( 
+	departmentNo         <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    PRIMARY <span class="hljs-keyword">KEY</span>,
+	departmentName       <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	depLocation          <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	mangeEmployeeNo      <span class="hljs-built_in">int</span>      
+ );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> mangeEmployeeNo <span class="hljs-keyword">ON</span> department ( mangeEmployeeNo );
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> employee <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( departmentNo ) <span class="hljs-keyword">REFERENCES</span> department( departmentNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> post <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( departmentNo ) <span class="hljs-keyword">REFERENCES</span> department( departmentNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+</div></code></pre>
+<h3 id="employee">Employee</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> employee ( 
+	employeeNo           <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    PRIMARY <span class="hljs-keyword">KEY</span>,
+	Title                <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	firstName            <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	lastName             <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	address              <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	workTelExt           <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	homeTellNo           <span class="hljs-built_in">text</span>      ,
+	emplyeeEmailAddress  <span class="hljs-built_in">text</span>      ,
+	socialSecurityNumber <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	DOB                  <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	sex                  <span class="hljs-built_in">boolean</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	salary               <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	departmentNo         <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	dateStarted          <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	dateLeft             <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	supervisorEmployeeNo <span class="hljs-built_in">int</span>      
+ );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> departmentNo <span class="hljs-keyword">ON</span> employee ( departmentNo );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> fk_employee_employee <span class="hljs-keyword">ON</span> employee ( supervisorEmployeeNo );
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> department <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( mangeEmployeeNo ) <span class="hljs-keyword">REFERENCES</span> employee( employeeNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> employee <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( supervisorEmployeeNo ) <span class="hljs-keyword">REFERENCES</span> employee( employeeNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">position</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( employeeNo ) <span class="hljs-keyword">REFERENCES</span> employee( employeeNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> qualification <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( employeeNo ) <span class="hljs-keyword">REFERENCES</span> employee( employeeNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> review <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( reviewedEmployeeNo ) <span class="hljs-keyword">REFERENCES</span> employee( employeeNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> review <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( reviewerEmployeeNo ) <span class="hljs-keyword">REFERENCES</span> employee( employeeNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> workhistory <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( employeeNo ) <span class="hljs-keyword">REFERENCES</span> employee( employeeNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+</div></code></pre>
+<h3 id="gradepost">GradePost</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> gradepost ( 
+	gradeNo              <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	validFromDate        <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	postNo               <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	availableFromDate    <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	<span class="hljs-keyword">CONSTRAINT</span> pk_gradepost PRIMARY <span class="hljs-keyword">KEY</span> ( gradeNo, validFromDate, postNo, availableFromDate )
+ );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> fk_gradepost_post <span class="hljs-keyword">ON</span> gradepost ( postNo );
+</div></code></pre>
+<h3 id="position">Position</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">position</span> ( 
+	employeeNo           <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	postNo               <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	startDate            <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	endDate              <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	positionTypeNo       <span class="hljs-built_in">int</span>      ,
+	<span class="hljs-keyword">CONSTRAINT</span> pk_position PRIMARY <span class="hljs-keyword">KEY</span> ( employeeNo, postNo, startDate )
+ );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> employeeNo <span class="hljs-keyword">ON</span> <span class="hljs-keyword">position</span> ( employeeNo, postNo );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> postNo <span class="hljs-keyword">ON</span> <span class="hljs-keyword">position</span> ( postNo );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> fk_position_positiontype <span class="hljs-keyword">ON</span> <span class="hljs-keyword">position</span> ( positionTypeNo );
+</div></code></pre>
+<h3 id="post">Post</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> post ( 
+	postNo               <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	availableFromDate    <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	availableToDate      <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	postDescription      <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	salariedHourly       <span class="hljs-built_in">boolean</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	fullPartTime         <span class="hljs-built_in">boolean</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	temporaryPermanet    <span class="hljs-built_in">boolean</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	treeLaborStandardsActExempt <span class="hljs-built_in">boolean</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	departmentNo         <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	<span class="hljs-keyword">CONSTRAINT</span> pk_post PRIMARY <span class="hljs-keyword">KEY</span> ( postNo, availableFromDate ),
+	<span class="hljs-keyword">CONSTRAINT</span> postNo <span class="hljs-keyword">UNIQUE</span> ( postNo ) 
+ );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> departmentNo <span class="hljs-keyword">ON</span> post ( departmentNo );
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> gradepost <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( postNo ) <span class="hljs-keyword">REFERENCES</span> post( postNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">position</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> ( postNo ) <span class="hljs-keyword">REFERENCES</span> post( postNo ) <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> RESTRICT <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> RESTRICT;
+</div></code></pre>
+<h3 id="qualification">Qualification</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> qualification ( 
+	employeeNo           <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    PRIMARY <span class="hljs-keyword">KEY</span>,
+	qualificationName    <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	gradeObtained        <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	startQualDate        <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	endQualDate          <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	gpa                  <span class="hljs-built_in">float</span>(<span class="hljs-number">12</span>,<span class="hljs-number">0</span>)  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	institutionNo        <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    
+ );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> institutionNo <span class="hljs-keyword">ON</span> qualification ( institutionNo );
+</div></code></pre>
+<h3 id="review">Review</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> review ( 
+	reviewedEmployeeNo   <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	reviewerEmployeeNo   <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	reviewDate           <span class="hljs-built_in">date</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	comments             <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	<span class="hljs-keyword">CONSTRAINT</span> pk_review PRIMARY <span class="hljs-keyword">KEY</span> ( reviewedEmployeeNo, reviewerEmployeeNo, reviewDate )
+ );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> reviewedEmployeeNo <span class="hljs-keyword">ON</span> review ( reviewedEmployeeNo, reviewerEmployeeNo );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> reviewerEmployeeNo <span class="hljs-keyword">ON</span> review ( reviewerEmployeeNo );
+</div></code></pre>
+<h3 id="workhistory">WorkHistory</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> workhistory ( 
+	prevCompanyNo        <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	employeeNo           <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	prevPostition        <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	prevGrade            <span class="hljs-built_in">int</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	prevSalary           <span class="hljs-built_in">int</span>      ,
+	prevLocation         <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	prevResponsibilities <span class="hljs-built_in">text</span>  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>    ,
+	<span class="hljs-keyword">CONSTRAINT</span> pk_workhistory PRIMARY <span class="hljs-keyword">KEY</span> ( prevCompanyNo, employeeNo )
+ );
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> fk_workhistory_employee <span class="hljs-keyword">ON</span> workhistory ( employeeNo );
+</div></code></pre>
+<h2 id="queries">Queries</h2>
+<p>consider this relation instance on qualification:</p>
+<p><img src="./images/r1.png" alt="img"></p>
+<p>as you can see, the gpa scale is too large and covers the range of 1 billion to 1000 billion, thus if we divide it to 50 billion,
+it's range will be from 1 to 20, wich is more formal.</p>
+<pre class="hljs"><code><div>        <span class="hljs-keyword">UPDATE</span> qualification
+        <span class="hljs-keyword">SET</span> gpa = gpa / <span class="hljs-number">50000000000</span>
+</div></code></pre>
+<p><img src="./images/r2.png" alt="img"></p>
+<p>now assume that we want delete employee number 4 from this table, therfore:</p>
+<pre class="hljs"><code><div>        <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> qualification
+        <span class="hljs-keyword">WHERE</span> employeeNo = <span class="hljs-number">4</span>
+</div></code></pre>
+<p><img src="./images/r3.png" alt="img"></p>
+<ol>
+<li>
+<p>Info on employees whose salary is above salary average</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> employeeNo, firstName, lastName
+    <span class="hljs-keyword">FROM</span> employee 
+    <span class="hljs-keyword">WHERE</span> salary &gt; ( 
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">avg</span>(salary)
+        <span class="hljs-keyword">FROM</span> employee
+    );
+</div></code></pre>
+<p><img src="./images/4.png" alt="img"></p>
+</li>
+<li>
+<p>List of employees number and previous companies in which employees of department number 6 have worked in</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> employeeNo, pCompanyName
+    <span class="hljs-keyword">FROM</span> ( employee <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> workhistory <span class="hljs-keyword">USING</span>(employeeNo) ) <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> prevcompany <span class="hljs-keyword">USING</span>(prevCompanyNo)
+    <span class="hljs-keyword">WHERE</span> departmentNo = <span class="hljs-number">6</span>;
+</div></code></pre>
+<p><img src="./images/5.png" alt="img"></p>
+</li>
+<li>
+<p>Info on female employees whose salary is more than at least 1 male employee</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> employeeNo , firstName, lastName 
+    <span class="hljs-keyword">FROM</span> employee e1
+    <span class="hljs-keyword">WHERE</span> e1.sex=<span class="hljs-number">0</span> <span class="hljs-keyword">AND</span> e1.salary &gt; <span class="hljs-keyword">SOME</span> ( 
+        <span class="hljs-keyword">SELECT</span> salary 
+        <span class="hljs-keyword">FROM</span> employee e2
+        <span class="hljs-keyword">WHERE</span> e2.sex = <span class="hljs-number">1</span>
+    );
+</div></code></pre>
+<p><img src="./images/6.png" alt="img"></p>
+</li>
+<li>
+<p>Info on employees who have worked both in &quot;Rapzapin Direct Comapny&quot; and &quot;Klibanollover WorldWide Company&quot; companies</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">with</span> emp_work_prev(employeeNo, firstName, lastName, pCompanyName) <span class="hljs-keyword">AS</span> (
+        <span class="hljs-keyword">SELECT</span> employeeNo, firstName, lastName, pCompanyName
+        <span class="hljs-keyword">FROM</span> employee <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> (workhistory <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> prevcompany <span class="hljs-keyword">USING</span>(prevCompanyNo)) <span class="hljs-keyword">USING</span>(employeeNo)
+    )
+    <span class="hljs-keyword">SELECT</span> employeeNo, firstName, lastName
+    <span class="hljs-keyword">FROM</span> emp_work_prev e1
+    <span class="hljs-keyword">WHERE</span> e1.pCompanyName=<span class="hljs-string">'Rapzapin Direct Company'</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">EXISTS</span> (
+        <span class="hljs-keyword">SELECT</span> *
+        <span class="hljs-keyword">FROM</span> emp_work_prev e2
+        <span class="hljs-keyword">WHERE</span> e1.employeeNo = e2.employeeNo <span class="hljs-keyword">AND</span> e2.pCompanyName=<span class="hljs-string">'Klibanollover WorldWide Company'</span>);
+
+
+</div></code></pre>
+<p><img src="./images/7.png" alt="img"></p>
+</li>
+<li>
+<p>Existing post numbers at all grades in the database</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> gradeNo, postNo
+    <span class="hljs-keyword">FROM</span> grade <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> gradepost <span class="hljs-keyword">USING</span>(gradeNo);
+</div></code></pre>
+<p><img src="./images/8.png" alt="img"></p>
+</li>
+<li>
+<p>Consider you need to permit a secretary in the department 'Abel', access on reading user information. But you only want to give her permission in her own division</p>
+<pre class="hljs"><code><div>
+    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> Abel_employees <span class="hljs-keyword">AS</span> ( 
+    <span class="hljs-keyword">SELECT</span> e.* 
+    <span class="hljs-keyword">FROM</span> employee e <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> department
+    <span class="hljs-keyword">WHERE</span> departmentName=<span class="hljs-string">'Abel'</span>
+    );
+</div></code></pre>
+<p><img src="./images/9.png" alt="img"></p>
+</li>
+<li>
+<p>Now if this secretary has a username called 'emmy', we wanna establish:</p>
+<pre class="hljs"><code><div>
+    <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">on</span> Abel_employees <span class="hljs-keyword">to</span> (emmy);
+</div></code></pre>
+</li>
+<li>
+<p>What post each employee has, is a useful query; so we create a view of each employee's info and working post</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> employee_post <span class="hljs-keyword">AS</span> (
+        <span class="hljs-keyword">SELECT</span> employeeNo, firstName, lastName, postNo, postDescription
+        <span class="hljs-keyword">FROM</span> (employee <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">position</span>) <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> post <span class="hljs-keyword">USING</span>(postNo)
+    );
+</div></code></pre>
+<p><img src="./images/10.png" alt="img"></p>
+</li>
+<li>
+<p>Suppose a secretary with the username Monika is in charge of submitting interview records, so she must be granted access on creating records regarding reviews</p>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> review <span class="hljs-keyword">TO</span> (monika);
+</div></code></pre>
+</li>
+</ol>
+
+</body>
+</html>
